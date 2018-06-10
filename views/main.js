@@ -119,25 +119,12 @@ function mainView (state, emit) {
       }
     }
   })
-  const docHeader = documents.length > 0 ? html`<h3>Shopping Lists</h3>` : null
+  const docHeader = documents.length > 0 ? html`<h3>Notes</h3>` : null
   const soloCta = documents.length === 0 ? 'solo' : 'notSolo'
   return html`
     <body class=${prefix}>
       ${header(state)}
       <section class="content">
-        <div class="uvp">
-          <h4>Test drive multi-writer Dat!</h4>
-          <p>
-            This is a <b>Progressive Web App</b> built to demonstrate the use of the new 
-            <b>multi-writer</b> capabilities from the 
-            <a href="https://datproject.org/" class="link">Dat Project</a>.
-          </p>
-          <p>
-            Make shopping lists and use them online or offline, and sync between multiple
-            devices or users. Read the <a href="https://blog.datproject.org/2018/05/14/dat-shopping-list/"
-            class="link" target="_blank">blog post!</a>
-          </p>
-        </p>
         <header>
           ${docHeader}
         </header>

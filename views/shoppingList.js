@@ -140,14 +140,14 @@ function shoppingListView (state, emit) {
       const id = item.file.replace('.json', '')
       return html`
         <li tabindex="0" role="button" onclick=${toggle.bind(item)} onkeydown=${keydown}>
-          <input type="checkbox" checked=${item.bought} tabindex="-1" id=${id}>
-          <div class="text" data-bought=${item.bought}>${item.name}</div>
+          <div class="text">${item.name}</div>
           <div class="delete" onclick=${remove.bind(item)} tabindex="0">${raw('&#x00d7;')}</div>
         </li>
       `
 
       function toggle () {
-        emit('toggleBought', this.file)
+        console.log(this);
+        // emit('toggleBought', this.file)
       }
 
       function remove (event) {
@@ -155,9 +155,9 @@ function shoppingListView (state, emit) {
         event.stopPropagation()
       }
     })
-  const addItemInput = html`<input type="text">`
+  const addItemInput = html`<textarea type="text">`
   addItemInput.isSameNode = function (target) {
-    return (target && target.nodeName && target.nodeName === 'INPUT')
+    return (target && target.nodeName && target.nodeName === 'TEXTAREA')
   }
 
   items.push(html`
@@ -169,7 +169,7 @@ function shoppingListView (state, emit) {
     </li>
   `)
   function submitAddItem (event) {
-    const input = event.target.querySelector('input')
+    const input = event.target.querySelector('textarea')
     const name = input.value.trim()
     if (name !== '') emit('addItem', name)
     input.value = ''
