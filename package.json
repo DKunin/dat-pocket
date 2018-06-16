@@ -1,12 +1,9 @@
 {
-  "name": "dat-shopping-list",
-  "version": "0.0.8",
-  "description": "A demo of Dat multiwriter support (hyperdrive+hyperdb) in a PWA",
-  "author": "Jim Pick (@jimpick)",
+  "name": "dat-pocket",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
   "main": "server/index.js",
-  "bin": {
-    "dat-shopping-list": "./server/index.js"
-  },
   "scripts": {
     "start": "node server"
   },

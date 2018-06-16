@@ -54,7 +54,6 @@ const prefix = css`
       }
     }
     .solo {
-      background-image: url(/img/bg-landing-page.svg);
       background-position: center;
       background-repeat: no-repeat;
       height: 16rem;

@@ -135,6 +135,7 @@ function shoppingListView (state, emit) {
   if (state.loading) return layout('Loading...')
 
   const items = state.shoppingList
+    .filter(item => state.authorized)
     .sort((a, b) => a.dateAdded - b.dateAdded)
     .map(item => {
       const id = item.file.replace('.json', '')
@@ -144,7 +145,6 @@ function shoppingListView (state, emit) {
           <div class="delete" onclick=${remove.bind(item)} tabindex="0">${raw('&#x00d7;')}</div>
         </li>
       `
-
       function toggle () {
         console.log(this);
         // emit('toggleBought', this.file)
@@ -155,9 +155,9 @@ function shoppingListView (state, emit) {
         event.stopPropagation()
       }
     })
-  const addItemInput = html`<textarea type="text">`
+  const addItemInput = html`<input type="text">`
   addItemInput.isSameNode = function (target) {
-    return (target && target.nodeName && target.nodeName === 'TEXTAREA')
+    return (target && target.nodeName && target.nodeName === 'INPUT')
   }
 
   items.push(html`
@@ -169,7 +169,7 @@ function shoppingListView (state, emit) {
     </li>
   `)
   function submitAddItem (event) {
-    const input = event.target.querySelector('textarea')
+    const input = event.target.querySelector('input')
     const name = input.value.trim()
     if (name !== '') emit('addItem', name)
     input.value = ''
@@ -177,10 +177,12 @@ function shoppingListView (state, emit) {
     event.target.scrollIntoView()
   }
   const noItems = state.shoppingList.length === 0 ? html`<p>No items.</p>` : null
+  const unauth = !state.authorized ? 'You are unauthorized to see this list' : '';
   return layout(html`
     <div>
       ${shoppingListTitle(state, emit)}
       ${writeStatus(state, emit)}
+      ${unauth}
       <ul>
         ${items}
       </ul>

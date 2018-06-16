@@ -48,9 +48,8 @@ function header (state) {
   return html`
     <nav class=${prefix}>
       <a href="/">
-        <img src="/img/dat-hexagon.svg" alt="Dat Project Logo">
         <span class="title">
-          <span class="first-word">Dat</span> Notes
+          <span class="first-word">Dat</span> Pocket
         </span>
       </a>
       ${statusDisplay(state)}

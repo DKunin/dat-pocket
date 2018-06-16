@@ -93,7 +93,7 @@ function store (state, emitter) {
       console.log('hyperdrive ready')
       state.key = key
       state.archive = archive
-      let shoppingList = ['Rice', 'Bananas', 'Kale', 'Avocados', 'Bread', 'Quinoa', 'Beer']
+      let shoppingList = []
       writeDatJson(() => {
         writeShoppingListItems(() => {
           console.log('Done')
@@ -253,21 +253,21 @@ function store (state, emitter) {
     })
   }
 
-  emitter.on('toggleBought', itemFile => {
-    const item = state.shoppingList.find(item => item.file === itemFile)
-    console.log('toggleBought', itemFile, item)
-    // item.bought = !item.bought
-    const archive = state.archive
-    const json = JSON.stringify({
-      name: item.name,
-      bought: !item.bought,
-      dateAdded: item.dateAdded
-    })
-    archive.writeFile(`/shopping-list/${item.file}`, json, err => {
-      if (err) throw err
-      console.log(`Rewrote: ${item.file}`)
-    })
-  })
+  // emitter.on('toggleBought', itemFile => {
+  //   const item = state.shoppingList.find(item => item.file === itemFile)
+  //   console.log('toggleBought', itemFile, item)
+  //   // item.bought = !item.bought
+  //   const archive = state.archive
+  //   const json = JSON.stringify({
+  //     name: item.name,
+  //     bought: !item.bought,
+  //     dateAdded: item.dateAdded
+  //   })
+  //   archive.writeFile(`/shopping-list/${item.file}`, json, err => {
+  //     if (err) throw err
+  //     console.log(`Rewrote: ${item.file}`)
+  //   })
+  // })
 
   emitter.on('remove', itemFile => {
     const item = state.shoppingList.find(item => item.file === itemFile)

@@ -38,7 +38,7 @@ app.use((state, emitter) => {
 app.use(state => {
   state.glitchAppName = 'dat-shopping-list'
   state.gitHubRepoName = 'jimpick/dat-shopping-list'
-  state.devMode = false
+  state.devMode = true
   state.devLabel = 'f'
 })
 app.use(networkStatusStore)
@@ -51,3 +51,10 @@ app.route('/add-link', addLinkView)
 app.route('/doc/:key', shoppingListView)
 
 app.mount('body')
+
+var myHeaders = new Headers();
+myHeaders.append('x-api-key', 'p2BLn3GGdFbVqrvJtUydvuPl7W6ETRUCF9XmauSi');
+
+fetch('https://mercury.postlight.com/parser?url=https://trackchanges.postlight.com/building-awesome-cms-f034344d8ed',{
+    headers: myHeaders
+  }).then(res => res.json()).then(console.log)
